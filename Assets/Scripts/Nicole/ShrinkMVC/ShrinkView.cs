@@ -7,4 +7,5 @@ using UnityEngine;
 public class ShrinkView : Element1
 {
     public Border border;
+    public Boundary boundary;
 }
