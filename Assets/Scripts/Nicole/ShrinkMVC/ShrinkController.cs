@@ -9,5 +9,6 @@ public class ShrinkController : Element1
     public void ShrinkOn()
     {
         app.view.border.transform.localScale -= new Vector3(0.05f, 0.05f, 0.05f);
+        app.view.boundary.transform.localScale -= new Vector3(0.05f, 0.05f, 0.05f);
     }
 }
