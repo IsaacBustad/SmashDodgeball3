@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterBroadcast : MonoBehaviour, IObserver
 {
-    private NPCharacter myNPC;
+    private NPCGetBall myNPC;
     private Singleton mySingleton = Singleton.Instance;
     public void updateObserver(List<GameObject> aListOfBalls, List<GameObject> aListOfPlayers)
     {
@@ -14,7 +14,7 @@ public class CharacterBroadcast : MonoBehaviour, IObserver
 
     private void Awake()
     {
-        myNPC = this.gameObject.GetComponent<NPCharacter>();
+        myNPC = this.gameObject.GetComponent<NPCGetBall>();
     }
 
     // Start is called before the first frame update

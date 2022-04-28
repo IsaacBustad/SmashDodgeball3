@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2025bd018280404488dd2a431fe16f8b, type: 3}
+  m_Name: PlayPath1
+  m_EditorClassIdentifier: 
+  tfPts:
+  - {fileID: 1297021509473347128, guid: 5ad741072c3d6bb4496c0bb295d70382, type: 3}
+  - {fileID: 1803504364000093259, guid: 78bdda9dc94594042962f912d2389853, type: 3}
+  - {fileID: 9008808535639622988, guid: 6669a7bf586c7804ba6b8a0ec3b491ea, type: 3}
+  - {fileID: 5007495616463248756, guid: 9af356162abd5694caf4db72f905d6b2, type: 3}

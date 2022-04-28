@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public class NpcMove : MonoBehaviour
 {
     private CharacterState myACS;
-    private bool ons1 = true;
+    //private bool ons1 = true;
 
     public Singleton daSingleton = Singleton.Instance;
 
@@ -16,40 +17,55 @@ public class NpcMove : MonoBehaviour
     private int blueBallLayer = 8;
     private int redPlayerLayer = 9;
     private int bluePlayerLayer = 10;
-    [SerializeField] private PathObjs myPath;
+    [SerializeField] private PathObj myPath;
 
+    private bool hasPoint = false;
+    [SerializeField] private float buffDist;
+   
 
-
-    void Awake()
+    private void Awake()
     {
         myACS = this.gameObject.GetComponent<CharacterState>();
+        rb = this.gameObject.GetComponent<Rigidbody>();
 
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-
-    }
+   
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
-        MoveToPoint();
+        if (hasPoint == false)
+        {
+            GetPoint();
+        }
+        else
+        {
+            MoveNpcTo();
+        }
+        //MoveToPoint();
 
     }
 
-    public void MoveToPoint()
+    private void GetPoint()
+    {
+        int rando = UnityEngine.Random.Range(0, myPath.tfPts.Count - 1);
+        currentTransform = myPath.tfPts[rando];
+        hasPoint = true;
+        Debug.Log(currentTransform);
+    }
+
+
+
+    /*public void MoveToPoint()
     {
         myACS.IsRun();
 
 
         if (ons1)
         {
-            int rando = Random.Range(0, myPath.pathPoints.Count - 1);
-            currentTransform = myPath.pathPoints[rando];
+            int rando = Random.Range(0, myPath.tfPts.Count - 1);
+            currentTransform = myPath.tfPts[rando];
             ons1 = false;
         }
         this.transform.LookAt(currentTransform.position);
@@ -77,7 +93,29 @@ public class NpcMove : MonoBehaviour
 
         }
 
+    }*/
 
+
+
+    // move char to aquired point
+    private void MoveNpcTo()
+    {
+        this.transform.LookAt(currentTransform.position);
+        float distanceToPoint = (currentTransform.position - this.transform.position).magnitude;
+        // check distance buffer
+        if (distanceToPoint > buffDist)
+        {
+
+            Vector3 directionToPoint = (currentTransform.position - transform.position).normalized;
+
+            rb.AddForce(directionToPoint * 20, ForceMode.Force);
+
+
+        }
+        else
+        {
+            hasPoint = false;
+        }
     }
 
 }
