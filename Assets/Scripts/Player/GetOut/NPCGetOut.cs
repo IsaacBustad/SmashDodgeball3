@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class NPCGetOut : GetOut
 {
+    private Singleton singleton = Singleton.Instance;
+    private CharacterBroadcast characterBroadcast;
+
+    private void Awake()
+    {
+        characterBroadcast = GetComponent<CharacterBroadcast>();
+    }
     public override void RingOut()
     {
         {
@@ -12,6 +19,7 @@ public class NPCGetOut : GetOut
 
             // remove from in play list
             // add to que
+            singleton.RemoveObserver(characterBroadcast);
             topObjContatiner.SetActive(false);
         }
     }

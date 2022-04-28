@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ public sealed class Singleton : ISubject
 
     public Queue<GameObject> OutPlayers = new Queue<GameObject>();
 
+    private bool elimsStart = false;
     private Singleton()
     {
 
@@ -45,8 +47,40 @@ public sealed class Singleton : ISubject
     public void RemoveObserver(CharacterBroadcast o)
     {
         this.observers.Remove(o);
+        this.elimsStart = true;
+        this.Notify();
+
+        CheckForTeamDefeat();
     }
 
+    private void CheckForTeamDefeat()
+    {
+        List<GameObject> listRed = new List<GameObject>();
+        List<GameObject> listBlu = new List<GameObject>();
+
+        foreach(var i in AllPlayers)
+        {
+            if(i.layer == 9)
+            {
+                listRed.Add(i);
+            }
+            
+            else if(i.layer == 10)
+            {
+                listBlu.Add(i);
+            }
+        }
+
+        if (listRed.Count <= 0)
+        {
+            GameObject.FindObjectOfType<WinLose>().LoadLose();
+        }
+        
+        if (listBlu.Count <= 0)
+        {
+            GameObject.FindObjectOfType<WinLose>().LoadWin();
+        }
+    }
 
     public void BallUpdated(List<GameObject> newBalls)
     {
@@ -61,6 +95,7 @@ public sealed class Singleton : ISubject
         foreach (var o in observers)
         {
             o.updateObserver(AllBalls, AllPlayers);
+
         }
     }
 
