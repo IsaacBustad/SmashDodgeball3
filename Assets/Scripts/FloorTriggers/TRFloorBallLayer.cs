@@ -8,7 +8,7 @@ public class TRFloorBallLayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.GetComponent<Ball>().ballLayer = layerInt;
+        //other.gameObject.GetComponent<Ball>().ballLayer = layerInt;
         other.gameObject.layer = layerInt;
     }
 }

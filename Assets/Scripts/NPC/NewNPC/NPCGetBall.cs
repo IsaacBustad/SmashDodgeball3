@@ -10,8 +10,8 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
 {
     // params
     private bool hasBall = false;
-    private GameObject targBall;
-    
+    [SerializeField] private float buffDist = 2f;
+    [SerializeField] private GameObject tstObj;
 
 
     //salvage params
@@ -57,7 +57,7 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
 
     private void Awake()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -72,9 +72,36 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
     private void TargetABall()
     {
         FindClosestBall();
-        
+        MovrToBall();
     }
 
+    private void MovrToBall()
+    {
+        Vector3 lookV3 = new Vector3(closestBall.transform.position.x, this.transform.position.y, closestBall.transform.position.z);
+        this.transform.LookAt(lookV3);
+        float distanceToPoint = (closestBall.transform.position - this.transform.position).magnitude;
+        // check distance buffer
+        if (distanceToPoint >= buffDist)
+        {
+
+            Vector3 directionToPoint = (closestBall.transform.position - transform.position).normalized;
+
+            rb.AddForce(directionToPoint * 100, ForceMode.Force);
+
+
+        }
+        else
+        {
+            myThrower.ballOBJ = closestBall;
+            hasBall = true;
+            ThrowBall();
+        }
+    }
+
+    private void ThrowBall()
+    {
+        myThrower.ThrowBall(myACS,tstObj.transform );
+    }
 
     public GameObject FindClosestBall()
     {
@@ -119,7 +146,7 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
 
         }
         else { closestBall = null; }
-        Debug.Log("AllBalls Count: " + AllBalls.Count() + "\n  | Eligible Balls: " + EligibleBalls.Count() + "\n  | Closest Ball: " + closestBall.name);
+        Debug.Log("AllBalls Count: " + AllBalls.Count + "\n  | Eligible Balls: " + EligibleBalls.Count + "\n  | Closest Ball: " + closestBall.name);
 
         return closestBall;
     }
