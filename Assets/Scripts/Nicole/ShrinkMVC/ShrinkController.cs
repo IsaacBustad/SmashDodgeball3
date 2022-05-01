@@ -11,4 +11,14 @@ public class ShrinkController : Element1
         app.view.border.transform.localScale -= new Vector3(0.05f, 0.05f, 0.05f);
         app.view.boundary.transform.localScale -= new Vector3(0.05f, 0.05f, 0.05f);
     }
+
+    public BallSpawner ballSpawner;
+    public void Detect(GameObject gameObject)
+    {
+        if (gameObject.tag == "Ball")
+        {
+            Destroy(gameObject);
+            ballSpawner.RemoveBallList(gameObject);
+        }
+    }
 }
