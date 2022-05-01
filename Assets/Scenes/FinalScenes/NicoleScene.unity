@@ -6842,8 +6842,17 @@ MonoBehaviour:
   timeSpawnMin: 3
   spawnTime: 0
   lastSpawnTime: 0
-  locations: []
-  ballTypeList: []
+  locations:
+  - {x: -73.5, y: 13, z: -14.3}
+  - {x: -57.4, y: 13, z: -14.3}
+  - {x: -73.5, y: 13, z: -33.3}
+  - {x: -57.4, y: 13, z: -33.3}
+  ballTypeList:
+  - {fileID: 11400000, guid: 89b1b5a045e5dc64f9db4b35825e7b12, type: 2}
+  - {fileID: 11400000, guid: b2655eb670d4ef346b5860b76eabd7b3, type: 2}
+  - {fileID: 11400000, guid: 6cff5459172673f42980af25eb4fa2dd, type: 2}
+  - {fileID: 11400000, guid: 3cf6ea7e6baadf7409140298c6b30a30, type: 2}
+  - {fileID: 11400000, guid: 3cd2eb9b55806c14d9de22218c111270, type: 2}
 --- !u!4 &556779015
 Transform:
   m_ObjectHideFlags: 0
