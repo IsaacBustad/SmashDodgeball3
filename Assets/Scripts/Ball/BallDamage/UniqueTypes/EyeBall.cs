@@ -17,7 +17,7 @@ public class EyeBall : Ball
     }
     void Update()
     {
-        ballEffect();
+        //ballEffect();
     }
 
     // Strategy pattern

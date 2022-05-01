@@ -47,6 +47,14 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
     [SerializeField] public Thrower myThrower;
 
 
+    // coroutine vars
+    [SerializeField] private float timeToThrow = 1;
+    private WaitForSeconds waitToThrow;
+    private bool canThrow = false;
+    private NpcMove npcMove;
+    
+
+
    
 
 
@@ -57,12 +65,15 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = gameObject.GetComponent<Rigidbody>();
+        myACS = gameObject.GetComponent<CharacterState>();
+        waitToThrow = new WaitForSeconds(timeToThrow);
+        npcMove = gameObject.GetComponent<NpcMove>();
     }
 
     private void Update()
     {
-        if( hasBall == false)
+        if(myThrower.hasBall == false)
         {
             TargetABall();
         }
@@ -72,40 +83,63 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
     private void TargetABall()
     {
         FindClosestBall();
+        
         MovrToBall();
     }
 
     private void MovrToBall()
     {
-        Vector3 lookV3 = new Vector3(closestBall.transform.position.x, this.transform.position.y, closestBall.transform.position.z);
-        this.transform.LookAt(lookV3);
-        float distanceToPoint = (closestBall.transform.position - this.transform.position).magnitude;
-        // check distance buffer
-        if (distanceToPoint >= buffDist)
+        if (eligibleBalls.Count != 0)
         {
 
-            Vector3 directionToPoint = (closestBall.transform.position - transform.position).normalized;
+            myACS.IsWalk();
+            if (myACS.GroundCheck() == true)
+            {
+                Vector3 lookV3 = new Vector3(closestBall.transform.position.x, this.transform.position.y, closestBall.transform.position.z);
+                this.transform.LookAt(lookV3);
+                float distanceToPoint = (closestBall.transform.position - this.transform.position).magnitude;
+                // check distance buffer
+                if (distanceToPoint >= buffDist)
+                {
 
-            rb.AddForce(directionToPoint * 100, ForceMode.Force);
+                    Vector3 directionToPoint = (closestBall.transform.position - transform.position).normalized;
+
+                    rb.AddForce(new Vector3(directionToPoint.x, 0, directionToPoint.z) * 100, ForceMode.Force);
 
 
+                }
+                else
+                {
+                    myThrower.ballOBJ = closestBall;
+                    myThrower.hasBall = true;
+
+                    if (canThrow == false)
+                    {
+                        StartCoroutine(WaitToTrhow());
+                    }
+
+                }
+            }
         }
-        else
-        {
-            myThrower.ballOBJ = closestBall;
-            hasBall = true;
-            ThrowBall();
-        }
+        
     }
 
     private void ThrowBall()
     {
-        myThrower.ThrowBall(myACS,tstObj.transform );
+        FindClosestEnemy();
+        Debug.Log(allPlayers.Count);
+        Debug.Log(eligiblePlayers.Count);
+        Debug.Log(closestEnemy.name);
+        rb.velocity = Vector3.zero;
+        myThrower.ThrowBall(myACS, closestEnemy.transform );
     }
 
     public GameObject FindClosestBall()
     {
+        if(allBalls.Count != 0)
+        {
 
+        
         //Loop through list of AllBalls and update Eligible Balls
 
         foreach (var p in daSingleton.AllBalls)
@@ -122,36 +156,92 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
                 if (EligibleBalls.Contains(p))
                 { EligibleBalls.Remove(p); }
             }
+            if (p.GetComponent<BallDealDamage>().IsArmed)
+            {
+                EligibleBalls.Remove(p);
+            }
         }
 
-        // Find ball with lowest distance
-        if (EligibleBalls.Count > 0)
-        {
-            closestBall = null;
-            foreach (var p in EligibleBalls)
+            // Find ball with lowest distance
+            if (EligibleBalls.Count > 0)
             {
-                float distance = (p.transform.position - this.transform.position).magnitude;
+                closestBall = null;
+                foreach (var p in EligibleBalls)
+                {
+                    float distance = (p.transform.position - this.transform.position).magnitude;
 
-                if (closestBall == null)
-                {
-                    lowestDistance = distance;
-                    closestBall = p;
-                }
-                else if (distance < lowestDistance)
-                {
-                    lowestDistance = distance;
-                    closestBall = p;
+                    if (closestBall == null)
+                    {
+                        lowestDistance = distance;
+                        closestBall = p;
+                    }
+                    else if (distance < lowestDistance)
+                    {
+                        lowestDistance = distance;
+                        closestBall = p;
+                    }
                 }
             }
-
         }
         else { closestBall = null; }
-        Debug.Log("AllBalls Count: " + AllBalls.Count + "\n  | Eligible Balls: " + EligibleBalls.Count + "\n  | Closest Ball: " + closestBall.name);
+        //Debug.Log("AllBalls Count: " + AllBalls.Count + "\n  | Eligible Balls: " + EligibleBalls.Count + "\n  | Closest Ball: " + closestBall.name);
 
         return closestBall;
     }
 
 
+    // find targ player
+    public void FindClosestEnemy()
+    {
+
+        //closestEnemy = null;
+        //Loop through list of AllPlayers and update EligiblePlayers
+        foreach (var p in AllPlayers)
+        {
+            Debug.Log("AllPlayers: " + p.name);
+
+            if ((p.layer == 9 && this.gameObject.layer == bluePlayerLayer) || (p.layer == bluePlayerLayer && this.gameObject.layer == redPlayerLayer))
+            {
+                if (!EligiblePlayers.Contains(p))
+                { EligiblePlayers.Add(p); }
+            }
+            else
+            {
+                if (EligiblePlayers.Contains(p))
+                { EligiblePlayers.Remove(p); }
+            }
+        }
+
+        // Find enemy with lowest distance
+        foreach (var p in EligiblePlayers)
+        {
+            float distance = (p.transform.position - this.transform.position).magnitude;
+
+            if (closestEnemy == null)
+            {
+                lowestDistance = distance;
+                closestEnemy = p;
+
+            }
+            else if (distance < lowestDistance)
+            {
+                lowestDistance = distance;
+                closestEnemy = p;
+            }
+
+        }
+        
+    }
+
+
+    // coroutines
+    private IEnumerator WaitToTrhow()
+    {
+        canThrow = true;
+        yield return waitToThrow;
+        ThrowBall();
+        canThrow = false;
+    }
 
 
 

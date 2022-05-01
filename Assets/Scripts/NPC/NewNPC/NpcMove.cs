@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class NpcMove : MonoBehaviour
 {
+    public bool noBall = true;
     private CharacterState myACS;
     //private bool ons1 = true;
 
@@ -35,16 +36,19 @@ public class NpcMove : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (hasPoint == false)
+        if (noBall)
         {
-            GetPoint();
-        }
-        else
-        {
-            MoveNpcTo();
-        }
-        //MoveToPoint();
 
+            if (hasPoint == false)
+            {
+                GetPoint();
+            }
+            else
+            {
+                MoveNpcTo();
+            }
+            //MoveToPoint();
+        }
     }
 
     private void GetPoint()
