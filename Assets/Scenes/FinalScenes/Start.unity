@@ -612,6 +612,8 @@ MonoBehaviour:
   musicJosh: {fileID: 8300000, guid: ad7d973d0dd745649931df6f155c0e88, type: 3}
   musicNicole: {fileID: 8300000, guid: 050f895c927b8724693636519266a6b1, type: 3}
   musicMike: {fileID: 8300000, guid: 5659056aa58e66d4c8e59bc85f080b4b, type: 3}
+  musicWin: {fileID: 8300000, guid: 778c411f0a3afff4aa9e6847144d1553, type: 3}
+  musicLose: {fileID: 8300000, guid: bdeb3d724a4ef1448a60ea49a17a7886, type: 3}
 --- !u!4 &1068766162
 Transform:
   m_ObjectHideFlags: 0

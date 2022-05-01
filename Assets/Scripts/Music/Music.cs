@@ -17,6 +17,8 @@ public sealed class Music : MonoBehaviour
     public AudioClip musicJosh;
     public AudioClip musicNicole;
     public AudioClip musicMike;
+    public AudioClip musicWin;
+    public AudioClip musicLose;
     private bool hasPlayed = false;
 
     private AudioSource audioSource;
@@ -100,6 +102,28 @@ public sealed class Music : MonoBehaviour
             {
                 audioSource.Stop();
                 audioSource.PlayOneShot(musicNicole, 3);
+
+                hasPlayed = true;
+            }
+        }
+
+        if (SceneManager.GetActiveScene().name == "YouWin")
+        {
+            if (hasPlayed == false)
+            {
+                audioSource.Stop();
+                audioSource.PlayOneShot(musicWin, 3);
+
+                hasPlayed = true;
+            }
+        }
+
+        if (SceneManager.GetActiveScene().name == "YouLose")
+        {
+            if (hasPlayed == false)
+            {
+                audioSource.Stop();
+                audioSource.PlayOneShot(musicLose, 3);
 
                 hasPlayed = true;
             }
