@@ -2158,6 +2158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d02b6d77639fe74ea4bae69efc11619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bound: {fileID: 167387964}
 --- !u!1001 &154105577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2589,6 +2590,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f0db916a5e026c4aab3e2895627b62d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  model: {fileID: 1691761511}
+  view: {fileID: 713597029}
+  controller: {fileID: 1338827472}
 --- !u!4 &187634291
 Transform:
   m_ObjectHideFlags: 0
@@ -6967,6 +6971,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3986d13dd68be0f43a9c1f757a20413f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeSpawnMax: 10
+  timeSpawnMin: 3
+  spawnTime: 0
+  lastSpawnTime: 0
+  locations: []
+  ballTypeList: []
 --- !u!4 &556779015
 Transform:
   m_ObjectHideFlags: 0
@@ -7056,6 +7066,7 @@ GameObject:
   m_Component:
   - component: {fileID: 561690141}
   - component: {fileID: 561690143}
+  - component: {fileID: 561690144}
   - component: {fileID: 561690142}
   m_Layer: 0
   m_Name: Boundary
@@ -7110,6 +7121,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &561690144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561690140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c41a75ffe10f9fd42a3a0222e43a068e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &570643167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8747,6 +8770,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f16044931e21b41aad615b3aaccaf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  border: {fileID: 513426497}
+  boundary: {fileID: 561690144}
 --- !u!1001 &728434078
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19317,6 +19342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b529ff343e36feb47b2febf2f7dc293c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pplNum: 0
 --- !u!1001 &1692118729
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23620,6 +23646,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e76a49e3556724c9078a7290339fd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  model: {fileID: 1961113940}
+  view: {fileID: 143986026}
+  controller: {fileID: 2083188592}
 --- !u!4 &2087096255
 Transform:
   m_ObjectHideFlags: 0

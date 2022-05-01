@@ -16,6 +16,8 @@ public sealed class Music : MonoBehaviour
     public AudioClip musicInGame;
     private bool hasPlayed = false;
 
+    private AudioSource audioSource;
+
     private string currentScene;
 
 
@@ -36,6 +38,7 @@ public sealed class Music : MonoBehaviour
     }
     public void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         currentScene = SceneManager.GetActiveScene().name;
 
     }
@@ -48,7 +51,8 @@ public sealed class Music : MonoBehaviour
         {
             if (hasPlayed == false)
             {
-                AudioSource.PlayClipAtPoint(musicStart, gameObject.transform.position, 3);
+                audioSource.Stop();
+                audioSource.PlayOneShot(musicStart, 3);
 
                 hasPlayed = true;
             }
@@ -58,7 +62,8 @@ public sealed class Music : MonoBehaviour
         {
             if (hasPlayed == false)
             {
-                AudioSource.PlayClipAtPoint(musicInGame, gameObject.transform.position, 3);
+                audioSource.Stop();
+                audioSource.PlayOneShot(musicInGame, 3);
 
                 hasPlayed = true;
             }
