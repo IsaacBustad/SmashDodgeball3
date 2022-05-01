@@ -13,7 +13,10 @@ public sealed class Music : MonoBehaviour
     private static Music instance;
 
     public AudioClip musicStart;
-    public AudioClip musicInGame;
+    public AudioClip musicIsaac;
+    public AudioClip musicJosh;
+    public AudioClip musicNicole;
+    public AudioClip musicMike;
     private bool hasPlayed = false;
 
     private AudioSource audioSource;
@@ -63,7 +66,40 @@ public sealed class Music : MonoBehaviour
             if (hasPlayed == false)
             {
                 audioSource.Stop();
-                audioSource.PlayOneShot(musicInGame, 3);
+                audioSource.PlayOneShot(musicIsaac, 3);
+
+                hasPlayed = true;
+            }
+        }
+
+        if (SceneManager.GetActiveScene().name == "JoshScene")
+        {
+            if (hasPlayed == false)
+            {
+                audioSource.Stop();
+                audioSource.PlayOneShot(musicJosh, 3);
+
+                hasPlayed = true;
+            }
+        }
+
+        if (SceneManager.GetActiveScene().name == "MikeScene")
+        {
+            if (hasPlayed == false)
+            {
+                audioSource.Stop();
+                audioSource.PlayOneShot(musicMike, 3);
+
+                hasPlayed = true;
+            }
+        }
+
+        if (SceneManager.GetActiveScene().name == "NicoleScene")
+        {
+            if (hasPlayed == false)
+            {
+                audioSource.Stop();
+                audioSource.PlayOneShot(musicNicole, 3);
 
                 hasPlayed = true;
             }
