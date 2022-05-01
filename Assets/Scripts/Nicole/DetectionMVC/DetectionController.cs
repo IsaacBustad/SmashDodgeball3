@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class DetectionController : Element
 {
-    BallSpawner ballSpawner;
+    public BallSpawner ballSpawner;
     public void Detect(GameObject gameObject)
     {
         if (gameObject.tag == "Ball")

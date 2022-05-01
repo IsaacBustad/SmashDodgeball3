@@ -7,12 +7,14 @@ using UnityEngine;
 public class ShrinkModel : Element1, IObserver
 {
     public int pplNum;
+    public bool fourPpl = true;
     public void updateObserver(List<GameObject> aListOfBalls, List<GameObject> aListOfPlayers)
     {
         pplNum = aListOfPlayers.Count;
-        if (pplNum <= 4)
+        if (pplNum == 4 && fourPpl == true)
         {
             app.controller.ShrinkOn();
+            fourPpl = false;
         }
     }
 }
