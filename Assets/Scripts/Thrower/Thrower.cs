@@ -113,7 +113,7 @@ private void Update()
 
         hasBall = false;
         startThrow = false;
-        ballOBJ.transform.LookAt(targ);
+        ballOBJ.transform.LookAt(targ.position + new Vector3(0,.5f,0));
 
         aBallRb.useGravity = false;
         aBallRb.velocity = Vector3.zero;

@@ -126,6 +126,7 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
 
     private void ThrowBall()
     {
+        eligibleBalls.Remove(closestBall);
         FindClosestEnemy();
         Debug.Log(allPlayers.Count);
         Debug.Log(eligiblePlayers.Count);
