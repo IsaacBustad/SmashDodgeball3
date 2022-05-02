@@ -9,7 +9,7 @@ using UnityEngine;
 public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
 {
     // params
-    private bool hasBall = false;
+    
     [SerializeField] private float buffDist = 2f;
     [SerializeField] private GameObject tstObj;
 
