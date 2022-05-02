@@ -20,7 +20,9 @@ public class NPCGetOut : GetOut
             // remove from in play list
             // add to que
             singleton.RemoveObserver(characterBroadcast);
-            topObjContatiner.SetActive(false);
+            Debug.Log(topObjContatiner.name);
+            Destroy(topObjContatiner);
+            //topObjContatiner.SetActive(false);
         }
     }
 }
