@@ -117,7 +117,7 @@ MonoBehaviour:
   orientation: {fileID: 7637975478984874777}
   myThrower: {fileID: 2101921166644740343}
   health: 0
-  efGO: {fileID: 0}
+  efGO: {fileID: 11400000, guid: 8e80f963cf341494fad87da74fb391ea, type: 2}
 --- !u!114 &1330970676310022448
 MonoBehaviour:
   m_ObjectHideFlags: 0
