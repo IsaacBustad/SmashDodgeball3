@@ -6,11 +6,11 @@ public class WheelBaseDamage : BallDamageElement
 {
     public override float DamageNumber()
     {
-        return .5f;
+        return 2f;
     }
 
     public override float KnockbackNumber()
     {
-        return 1f;
+        return 5f;
     }
 }
