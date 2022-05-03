@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2025bd018280404488dd2a431fe16f8b, type: 3}
+  m_Name: BluePath
+  m_EditorClassIdentifier: 
+  tfPts:
+  - {fileID: 1954218313766570483, guid: 44eed1667fc240845af58a124497ea60, type: 3}
+  - {fileID: 4659976758374282545, guid: a320e10e5b04cf94fb36da7a0a162051, type: 3}
+  - {fileID: 1319414684999025163, guid: a0859f925ca200542924d9428a23d638, type: 3}
+  - {fileID: 4850716697545951961, guid: 1203bff59209dcb4a94c7b277f99918a, type: 3}
+  - {fileID: 2015568371200068393, guid: 47f0ed2d3eae2074eb38fa36747ae409, type: 3}

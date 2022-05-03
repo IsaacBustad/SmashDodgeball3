@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2025bd018280404488dd2a431fe16f8b, type: 3}
   m_Name: RedPath
   m_EditorClassIdentifier: 
-  tfPts: []
+  tfPts:
+  - {fileID: 5190622960132999666, guid: 5c353bcfff33f66409d8bc9cb0c4b933, type: 3}
+  - {fileID: 4327811204321719192, guid: ad7691de9d4985c47acf75357e89af56, type: 3}
+  - {fileID: 9022174523516919932, guid: 0b1d1893fa782a84c850ba6619348790, type: 3}
+  - {fileID: 7386735046560794511, guid: fb58215ebd1525246a25d37590ee4d43, type: 3}
+  - {fileID: 96329963367767019, guid: 93d70e345080eb6478190ac5accdf941, type: 3}
