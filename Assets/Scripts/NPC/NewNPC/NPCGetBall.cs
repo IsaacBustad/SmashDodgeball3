@@ -143,6 +143,8 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
     {
         eligibleBalls.Remove(closestBall);
         FindClosestEnemy();
+        Vector3 toEnemy = new Vector3 (closestEnemy.transform.position.x, gameObject.transform.position.y, closestEnemy.transform.position.z);
+        gameObject.transform.LookAt (toEnemy);
         Debug.Log(allPlayers.Count);
         //Debug.Log(eligiblePlayers.Count);
         Debug.Log(closestEnemy.name);
