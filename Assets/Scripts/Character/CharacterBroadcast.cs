@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class CharacterBroadcast : MonoBehaviour, IObserver
 {
+    //[SerializeField] private bool isPlayer = false;
     private NPCGetBall myNPC;
     private Singleton mySingleton = Singleton.Instance;
     public void updateObserver(List<GameObject> aListOfBalls, List<GameObject> aListOfPlayers)
     {
-        myNPC.AllBalls = aListOfBalls;
-        myNPC.AllPlayers = aListOfPlayers;
+        if (myNPC != null)
+        {
+            myNPC.AllBalls = aListOfBalls;
+            myNPC.AllPlayers = aListOfPlayers;
+        }
     }
 
     private void Awake()

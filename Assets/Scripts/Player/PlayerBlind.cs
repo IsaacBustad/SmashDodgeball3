@@ -8,7 +8,7 @@ using UnityEngine;
 public class PlayerBlind : MonoBehaviour
 {
     [SerializeField]  private GameObject blindCan;
-    [SerializeField] private float healthMult = 0.1f;
+    private float healthMult = 1f;
 
     private CharHealth health;
 

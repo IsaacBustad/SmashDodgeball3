@@ -22,7 +22,7 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
     private List<GameObject> allBalls = new List<GameObject>();
     private List<GameObject> allPlayers = new List<GameObject>();
     private List<GameObject> eligibleBalls = new List<GameObject>();
-    private List<GameObject> eligiblePlayers = new List<GameObject>();
+    //private List<GameObject> eligiblePlayers = new List<GameObject>();
     private GameObject closestBall;
     private GameObject closestEnemy;
 
@@ -130,7 +130,7 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
         eligibleBalls.Remove(closestBall);
         FindClosestEnemy();
         Debug.Log(allPlayers.Count);
-        Debug.Log(eligiblePlayers.Count);
+        //Debug.Log(eligiblePlayers.Count);
         Debug.Log(closestEnemy.name);
         rb.velocity = Vector3.zero;
         myThrower.ThrowBall(myACS, closestEnemy.transform );
@@ -195,7 +195,7 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
     // find targ player
     public void FindClosestEnemy()
     {
-
+        List<GameObject> eligiblePlayers = new List<GameObject>();
         //closestEnemy = null;
         //Loop through list of AllPlayers and update EligiblePlayers
         foreach (var p in AllPlayers)
@@ -207,11 +207,11 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
                 if (!EligiblePlayers.Contains(p))
                 { EligiblePlayers.Add(p); }
             }
-            else
+            /*else
             {
                 if (EligiblePlayers.Contains(p))
                 { EligiblePlayers.Remove(p); }
-            }
+            }*/
         }
 
         // Find enemy with lowest distance
@@ -272,11 +272,11 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
         get { return this.allPlayers; }
         set { this.allPlayers = value; }
     }
-    public List<GameObject> EligiblePlayers
+    /*public List<GameObject> EligiblePlayers
     {
         get { return this.eligiblePlayers; }
         set { this.eligiblePlayers = value; }
-    }
+    }*/
     public GameObject ClosestBall
     {
         get { return this.closestBall; }

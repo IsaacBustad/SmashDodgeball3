@@ -6,12 +6,15 @@ using UnityEngine;
 public class CharElimEffect : ScriptableObject
 {
     [SerializeField] private GameObject effect;
+    [SerializeField] private List<AudioClip> aC;
     
 
 
     public void PlayEffect(Transform aTF)
     {
         GameObject newEffect = Instantiate(effect, aTF.position, aTF.rotation);
+        int rn = Random.Range(0, aC.Count);
+        AudioSource.PlayClipAtPoint(aC[rn], aTF.position );
         Destroy(newEffect, 2f);
     }
 }
