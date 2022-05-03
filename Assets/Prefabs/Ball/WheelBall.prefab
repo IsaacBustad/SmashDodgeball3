@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myBall: {fileID: 7821214240412125868}
+  mySpawner: {fileID: 0}
   myDamageEffect: {fileID: 11400000, guid: f789a09474cf4e049b309d90a4070672, type: 2}
 --- !u!114 &-5245446510149071263
 MonoBehaviour:
@@ -133,6 +134,7 @@ GameObject:
   - component: {fileID: 2646675737431288958}
   - component: {fileID: 6555009454155842125}
   - component: {fileID: 7821214240412125868}
+  - component: {fileID: 867849118681626671}
   m_Layer: 0
   m_Name: WheelBall
   m_TagString: Untagged
@@ -219,3 +221,18 @@ MonoBehaviour:
   ballLayer: 0
   rotationSpeed: 500
   audio: {fileID: 8300000, guid: 0339e38bf9e144442a44f1db5219c019, type: 3}
+--- !u!114 &867849118681626671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5749386543907543025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a61b4f40fa436d446adf0e24de95e823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xAxis: 0
+  yAxis: 0
+  zAxis: 1
