@@ -11,7 +11,7 @@ public class ShrinkModel : Element1, IObserver
     public void updateObserver(List<GameObject> aListOfBalls, List<GameObject> aListOfPlayers)
     {
         pplNum = aListOfPlayers.Count;
-        if (pplNum == 4 && fourPpl == true)
+        if (pplNum <= 4 && fourPpl == true)
         {
             app.controller.ShrinkOn();
             fourPpl = false;
