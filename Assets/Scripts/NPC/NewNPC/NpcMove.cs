@@ -22,12 +22,15 @@ public class NpcMove : MonoBehaviour
 
     private bool hasPoint = false;
     [SerializeField] private float buffDist;
-   
 
+    private WaitForSeconds waitToTurn;
+    
+    private bool allowedToTurn = true;
     private void Awake()
     {
         myACS = this.gameObject.GetComponent<CharacterState>();
         rb = this.gameObject.GetComponent<Rigidbody>();
+        waitToTurn = new WaitForSeconds(5f);
 
     }
 
@@ -45,13 +48,14 @@ public class NpcMove : MonoBehaviour
             }
             else
             {
-                if(myACS.GroundCheck())
-                {
-                    MoveNpcTo();
-                }
-                
+                MoveNpcTo();
             }
             //MoveToPoint();
+        }
+
+        if (allowedToTurn)
+        {
+            StartCoroutine(PeriodicTurnRoutine());
         }
     }
 
@@ -108,7 +112,6 @@ public class NpcMove : MonoBehaviour
     // move char to aquired point
     private void MoveNpcTo()
     {
-        myACS.IsRun();
         this.transform.LookAt(currentTransform.position);
         float distanceToPoint = (currentTransform.position - this.transform.position).magnitude;
         // check distance buffer
@@ -127,4 +130,20 @@ public class NpcMove : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.transform.gameObject.layer == 9 || collision.transform.gameObject.layer == 10)
+        {
+            GetPoint();
+        }
+    }
+
+    
+    private IEnumerator PeriodicTurnRoutine()
+    {
+        allowedToTurn = false;
+        yield return waitToTurn;
+        GetPoint();
+        allowedToTurn = true;
+    }
 }

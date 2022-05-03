@@ -10,7 +10,7 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
 {
     // params
     
-    [SerializeField] private float buffDist = 2f;
+    [SerializeField] private float buffDist = 1f;
     [SerializeField] private GameObject tstObj;
 
 
@@ -50,7 +50,7 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
     // coroutine vars
     [SerializeField] private float timeToThrow = 1;
     private WaitForSeconds waitToThrow;
-    private bool canThrow = false;
+    private bool canThrow = true;
     private NpcMove npcMove;
     
 
@@ -84,7 +84,6 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
         {
             if (myACS.GroundCheck())
             {
-                
                 if (myThrower.hasBall == false)
                 {
                     TargetABall();
@@ -97,13 +96,28 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
     {
         myACS.IsWalk();
         FindClosestBall();
-        
         MovrToBall();
+        ThrowBallMike();
     }
+    private void ThrowBallMike()
+    {
+        float distanceToPoint = (closestBall.transform.position - this.transform.position).magnitude;
+        if (distanceToPoint < buffDist)
+        {
+            StartCoroutine(WaitToPickUp());
+            myThrower.ballOBJ = closestBall;
+            myThrower.ballOBJ.GetComponent<BallDealDamage>().IsArmed = true;
+            myThrower.hasBall = true;
 
+            if (canThrow == true)
+            {
+                StartCoroutine(WaitToTrhow());
+            }
+        }
+    }
     private void MovrToBall()
     {
-        if (eligibleBalls.Count != 0)
+        if (eligibleBalls.Count != 0 && canThrow==true)
         {
 
             
@@ -119,10 +133,9 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
                     Vector3 directionToPoint = (closestBall.transform.position - transform.position).normalized;
 
                     rb.AddForce(new Vector3(directionToPoint.x, 0, directionToPoint.z) * 100, ForceMode.Force);
-
-
                 }
-                else
+                else { ThrowBallMike(); }
+/*                else
                 {
                     myThrower.ballOBJ = closestBall;
                     myThrower.ballOBJ.GetComponent<BallDealDamage>().IsArmed = true;
@@ -133,18 +146,17 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
                         StartCoroutine(WaitToTrhow());
                     }
 
-                }
+                }*/
             }
         }
         
     }
 
+
     private void ThrowBall()
     {
         eligibleBalls.Remove(closestBall);
         FindClosestEnemy();
-        Vector3 toEnemy = new Vector3 (closestEnemy.transform.position.x, gameObject.transform.position.y, closestEnemy.transform.position.z);
-        gameObject.transform.LookAt (toEnemy);
         Debug.Log(allPlayers.Count);
         //Debug.Log(eligiblePlayers.Count);
         Debug.Log(closestEnemy.name);
@@ -183,7 +195,6 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
             // Find ball with lowest distance
             if (EligibleBalls.Count > 0)
             {
-                npcMove.noBall = false;
                 closestBall = null;
                 foreach (var p in EligibleBalls)
                 {
@@ -202,7 +213,7 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
                 }
             }
         }
-        else { closestBall = null; npcMove.noBall = true; }
+        else { closestBall = null; }
         //Debug.Log("AllBalls Count: " + AllBalls.Count + "\n  | Eligible Balls: " + EligibleBalls.Count + "\n  | Closest Ball: " + closestBall.name);
 
         return closestBall;
@@ -256,12 +267,19 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
     // coroutines
     private IEnumerator WaitToTrhow()
     {
-        canThrow = true;
+        canThrow = false;
         yield return waitToThrow;
         ThrowBall();
-        canThrow = false;
+        yield return waitToThrow;
+        canThrow = true;
     }
 
+    private IEnumerator WaitToPickUp()
+    {
+        
+        yield return waitToThrow;
+        
+    }
 
 
 
