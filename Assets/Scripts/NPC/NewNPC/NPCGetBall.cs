@@ -204,8 +204,8 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
 
             if ((p.layer == 9 && this.gameObject.layer == bluePlayerLayer) || (p.layer == bluePlayerLayer && this.gameObject.layer == redPlayerLayer))
             {
-                if (!EligiblePlayers.Contains(p))
-                { EligiblePlayers.Add(p); }
+                if (!eligiblePlayers.Contains(p))
+                { eligiblePlayers.Add(p); }
             }
             /*else
             {
@@ -215,7 +215,7 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
         }
 
         // Find enemy with lowest distance
-        foreach (var p in EligiblePlayers)
+        foreach (var p in eligiblePlayers)
         {
             float distance = (p.transform.position - this.transform.position).magnitude;
 
