@@ -6,6 +6,7 @@ public class PlayerOut : GetOut
 {
     [SerializeField] private float outDelay = 3f;
     private WaitForSeconds delayOut;
+    private Singleton instance = Singleton.Instance;
 
     private void Awake()
     {
@@ -21,7 +22,8 @@ public class PlayerOut : GetOut
 
     // coroutine to elim
     private IEnumerator DelayOut()
-    {        
+    {
+        instance.RemoveObserver(gameObject.GetComponent<CharacterBroadcast>());
         yield return delayOut;
         GameObject.FindObjectOfType<WinLose>().LoadLose();
     }
