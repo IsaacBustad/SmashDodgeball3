@@ -17,8 +17,9 @@ public class ShrinkController : Element1
     {
         if (gameObject.tag == "Ball")
         {
-            Destroy(gameObject);
             ballSpawner.RemoveBallList(gameObject);
+            Destroy(gameObject);
+            
         }
     }
 }
