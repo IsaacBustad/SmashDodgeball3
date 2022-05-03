@@ -21,7 +21,7 @@ public class WheelBall : Ball
 
     void Update()
     {
-        //ballEffect();
+        ballEffect();
     }
 
     // Strategy pattern

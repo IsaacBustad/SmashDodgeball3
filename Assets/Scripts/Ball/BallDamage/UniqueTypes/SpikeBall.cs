@@ -20,7 +20,7 @@ public class SpikeBall : Ball
 
     void Update()
     {
-        //ballEffect();
+        ballEffect();
     }
 
     // Strategy pattern

@@ -18,7 +18,7 @@ public class BombBall : Ball
     }
     void Update()
     {
-        //ballEffect();
+        ballEffect();
     }
 
     // When player grabs ball
