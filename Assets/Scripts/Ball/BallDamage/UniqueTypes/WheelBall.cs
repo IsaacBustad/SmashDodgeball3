@@ -15,6 +15,7 @@ public class WheelBall : Ball
 
     void Start()
     {
+        ballSpin = GetComponent<BallSpin>();
         damageElement = new WheelBaseDamage();
     }
 

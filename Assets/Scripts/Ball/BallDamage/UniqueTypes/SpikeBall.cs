@@ -14,6 +14,7 @@ public class SpikeBall : Ball
     // Start is called before the first frame update
     void Start()
     {
+        ballSpin = GetComponent<BallSpin>();
         damageElement = new SpikeBaseDamage();
     }
 

@@ -13,11 +13,12 @@ public class EyeBall : Ball
     // Start is called before the first frame update
     void Start()
     {
+        ballSpin = GetComponent<BallSpin>();
         damageElement = new EyeBaseDamage();
     }
     void Update()
     {
-        //ballEffect();
+        ballEffect();
     }
 
     // Strategy pattern

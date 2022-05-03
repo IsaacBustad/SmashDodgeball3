@@ -13,6 +13,7 @@ public class BombBall : Ball
 
     void Start()
     {
+        ballSpin = GetComponent<BallSpin>();
         damageElement = new BombBaseDamage();
     }
     void Update()
