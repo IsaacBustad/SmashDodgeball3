@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: GetHit
   m_EditorClassIdentifier: 
   effect: {fileID: 5849950693692970601, guid: 87b11faeb82f55e4d8fcf3f1162d55fb, type: 3}
+  aC:
+  - {fileID: 8300000, guid: cb0a77218908f484bb5d80f79415f4ed, type: 3}
+  - {fileID: 8300000, guid: 2780c1abf0596f445b20626d369e7ade, type: 3}
+  - {fileID: 8300000, guid: 3d57c8f73237a264985c4b741aa825d8, type: 3}

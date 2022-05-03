@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: CharElim
   m_EditorClassIdentifier: 
   effect: {fileID: 2586579525860178536, guid: fe041f54b3ad5fa48a5f182bd0844d1d, type: 3}
+  aC:
+  - {fileID: 8300000, guid: 333a9d709ab9cdd4a9e347fa60cf2d3c, type: 3}
+  - {fileID: 8300000, guid: fad8ed24a1aedd145b47519be5d49317, type: 3}
