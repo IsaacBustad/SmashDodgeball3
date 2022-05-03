@@ -12,6 +12,8 @@ public sealed class Singleton : ISubject
 
     public Queue<GameObject> OutPlayers = new Queue<GameObject>();
 
+
+    public ShrinkModel shrinkModel;
     private bool elimsStart = false;
     private Singleton()
     {
@@ -97,6 +99,11 @@ public sealed class Singleton : ISubject
         {
             o.updateObserver(AllBalls, AllPlayers);
 
+        }
+
+        if(shrinkModel != null)
+        {
+            shrinkModel.updateObserver(AllBalls, AllPlayers);
         }
     }
 
