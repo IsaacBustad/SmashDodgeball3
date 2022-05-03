@@ -111,6 +111,7 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
                 else
                 {
                     myThrower.ballOBJ = closestBall;
+                    myThrower.ballOBJ.GetComponent<BallDealDamage>().IsArmed = true;
                     myThrower.hasBall = true;
 
                     if (canThrow == false)
