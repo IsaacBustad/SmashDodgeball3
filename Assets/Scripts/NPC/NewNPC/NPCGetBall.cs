@@ -84,6 +84,7 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
         {
             if (myACS.GroundCheck())
             {
+                
                 if (myThrower.hasBall == false)
                 {
                     TargetABall();
@@ -180,6 +181,7 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
             // Find ball with lowest distance
             if (EligibleBalls.Count > 0)
             {
+                npcMove.noBall = false;
                 closestBall = null;
                 foreach (var p in EligibleBalls)
                 {
@@ -198,7 +200,7 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
                 }
             }
         }
-        else { closestBall = null; }
+        else { closestBall = null; npcMove.noBall = true; }
         //Debug.Log("AllBalls Count: " + AllBalls.Count + "\n  | Eligible Balls: " + EligibleBalls.Count + "\n  | Closest Ball: " + closestBall.name);
 
         return closestBall;

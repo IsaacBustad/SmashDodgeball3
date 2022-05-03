@@ -45,7 +45,11 @@ public class NpcMove : MonoBehaviour
             }
             else
             {
-                MoveNpcTo();
+                if(myACS.GroundCheck())
+                {
+                    MoveNpcTo();
+                }
+                
             }
             //MoveToPoint();
         }
@@ -104,6 +108,7 @@ public class NpcMove : MonoBehaviour
     // move char to aquired point
     private void MoveNpcTo()
     {
+        myACS.IsRun();
         this.transform.LookAt(currentTransform.position);
         float distanceToPoint = (currentTransform.position - this.transform.position).magnitude;
         // check distance buffer

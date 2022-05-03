@@ -93,7 +93,7 @@ public class BallDealDamage : MonoBehaviour
 
                 
                 Destroy(this.gameObject, 1f);
-                mySpawner.RemoveBallList(this.gameObject);
+                if (mySpawner != null) { mySpawner.RemoveBallList(this.gameObject); }
                 DesEffect();
             }
         }
