@@ -73,15 +73,28 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
 
     private void Update()
     {
-        if(myThrower.hasBall == false)
-        {
-            TargetABall();
-        }
         
+        MoveCondition();
+        
+    }
+
+    private void MoveCondition()
+    {
+        if (myACS.CurMoveState() == "i" || myACS.CurMoveState() == "w" || myACS.CurMoveState() == "r")
+        {
+            if (myACS.GroundCheck())
+            {
+                if (myThrower.hasBall == false)
+                {
+                    TargetABall();
+                }
+            }
+        }
     }
 
     private void TargetABall()
     {
+        myACS.IsWalk();
         FindClosestBall();
         
         MovrToBall();
@@ -92,7 +105,7 @@ public class NPCGetBall : MonoBehaviour, IObserver //interface ball list get
         if (eligibleBalls.Count != 0)
         {
 
-            myACS.IsWalk();
+            
             if (myACS.GroundCheck() == true)
             {
                 Vector3 lookV3 = new Vector3(closestBall.transform.position.x, this.transform.position.y, closestBall.transform.position.z);

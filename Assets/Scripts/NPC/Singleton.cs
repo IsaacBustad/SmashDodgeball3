@@ -47,6 +47,7 @@ public sealed class Singleton : ISubject
     public void RemoveObserver(CharacterBroadcast o)
     {
         this.observers.Remove(o);
+        this.AllPlayers.Add(o.gameObject);
         this.elimsStart = true;
         this.Notify();
 
