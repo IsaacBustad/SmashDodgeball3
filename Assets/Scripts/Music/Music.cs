@@ -1,7 +1,7 @@
 // Written by Josh Xiong
 // 3/12/2022
 // Singleton
-// Purpose: ensures class has one instance globally
+// Purpose: ensures class has one instance globally -- Singleton
 
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +12,7 @@ public sealed class Music : MonoBehaviour
 {
     private static Music instance;
 
+    // Music by scene 
     public AudioClip musicStart;
     public AudioClip musicIsaac;
     public AudioClip musicJosh;
@@ -19,14 +20,16 @@ public sealed class Music : MonoBehaviour
     public AudioClip musicMike;
     public AudioClip musicWin;
     public AudioClip musicLose;
+
+    // To ensure the music doesn't repeat again
     private bool hasPlayed = false;
 
+    // The source to play the audio clip
     private AudioSource audioSource;
 
     private string currentScene;
 
-
-
+    // Singleton for the object
     public void Awake()
     {
         // Delete newly created music for each scene
@@ -41,6 +44,7 @@ public sealed class Music : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
+
     public void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -50,8 +54,6 @@ public sealed class Music : MonoBehaviour
 
     public void Update()
     {
-
-
         if (SceneManager.GetActiveScene().name == "Start")
         {
             if (hasPlayed == false)
@@ -129,6 +131,7 @@ public sealed class Music : MonoBehaviour
             }
         }
 
+        // Assure the boolean is resetted
         if (SceneManager.GetActiveScene().name != currentScene)
         {
             hasPlayed = false;

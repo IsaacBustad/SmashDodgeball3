@@ -1,3 +1,6 @@
+// Written by Josh Xiong
+// Decorator pattern: wheel base damage
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

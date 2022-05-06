@@ -1,3 +1,6 @@
+// Written by Josh Xiong
+// abstract class Ball: using Decorator pattern
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

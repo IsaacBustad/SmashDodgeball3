@@ -1,3 +1,6 @@
+// Written by Josh Xiong
+// Decorator pattern: decorator portion
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
